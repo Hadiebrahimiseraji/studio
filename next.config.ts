@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
   experimental: {
     allowedDevOrigins: ['https://*.cloudworkstations.dev'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
