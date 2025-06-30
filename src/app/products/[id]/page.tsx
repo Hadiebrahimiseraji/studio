@@ -1,76 +1,69 @@
-import { notFound } from 'next/navigation';
-import { getProductById, getProducts } from '@/lib/data';
+import { getProductById, getFullImageUrl } from '@/lib/api';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Separator } from '@/components/ui/separator';
-import { ProductImageGallery } from '@/components/product-image-gallery';
-import AddToCartButton from '@/components/add-to-cart-button';
-import AiRecommendations from '@/components/ai-recommendations';
+import { Badge } from '@/components/ui/badge';
 
-export async function generateStaticParams() {
-  const products = getProducts();
-  return products.map((product) => ({
-    id: product.id,
-  }));
-}
-
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = getProductById(params.id);
+export default async function ProductDetailPage({ params }: { params: { id: string } }) {
+  const product = await getProductById(params.id);
 
   if (!product) {
     notFound();
   }
 
+  const mainImageUrl = product.images.length > 0 ? getFullImageUrl(product.images[0].image) : 'https://placehold.co/600x600.png';
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+    <div className="container py-12">
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
         <div>
-          <ProductImageGallery images={product.images} alt={product.name} />
-        </div>
-        <div>
-          <h1 className="font-headline text-3xl font-bold">{product.name}</h1>
-          <p className="mt-2 text-lg text-muted-foreground">{product.category}</p>
-          <p className="mt-4 font-headline text-4xl font-bold text-primary">
-            {product.price.toLocaleString('fa-IR')} تومان
-          </p>
-          <Separator className="my-6" />
-          <p className="leading-relaxed text-muted-foreground">{product.description}</p>
-          <div className="mt-6">
-            <AddToCartButton product={product} />
+          <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+            <Image
+              src={mainImageUrl}
+              alt={product.name}
+              fill
+              className="object-cover"
+              data-ai-hint="product image"
+            />
           </div>
+          {/* TODO: Add thumbnail gallery for more images */}
         </div>
-      </div>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl lg:text-4xl font-bold font-headline">{product.name}</h1>
+            <p className="text-muted-foreground mt-2">{product.category.name}</p>
+          </div>
+          <p className="text-lg">{product.description}</p>
+          
+          {product.specifications && product.specifications.length > 0 && (
+             <div>
+                <h3 className="text-xl font-semibold font-headline mb-4">مشخصات فنی</h3>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-right">
+                        <tbody>
+                            {product.specifications.map(spec => (
+                                <tr key={spec.id} className="border-b">
+                                    <th className="px-4 py-2 font-medium text-muted-foreground whitespace-nowrap">{spec.specification_type.name}</th>
+                                    <td className="px-4 py-2">{spec.value}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          )}
 
-      <div className="mt-12">
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-headline text-2xl">مشخصات فنی</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[200px]">ویژگی</TableHead>
-                  <TableHead>مقدار</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {product.specifications.map((spec) => (
-                  <TableRow key={spec.name}>
-                    <TableCell className="font-medium">{spec.name}</TableCell>
-                    <TableCell>{spec.value}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </div>
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-3xl font-bold text-primary">{Number(product.price).toLocaleString('fa-IR')} تومان</p>
+            {product.available ? (
+                <Badge variant="default" className="bg-green-600">موجود</Badge>
+            ) : (
+                <Badge variant="destructive">ناموجود</Badge>
+            )}
+          </div>
 
-      <div className="mt-12">
-          <AiRecommendations currentProduct={product} />
+          <Button size="lg" className="w-full">افزودن به سبد خرید</Button>
+        </div>
       </div>
     </div>
   );

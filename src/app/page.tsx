@@ -1,117 +1,77 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ProductCard } from '@/components/product-card';
-import { getCategories, getFeaturedProducts } from '@/lib/data';
-import { ArrowLeft } from 'lucide-react';
+import { getProducts } from '@/lib/api';
+import ProductCard from '@/components/ProductCard';
 
-export default function Home() {
-  const categories = getCategories();
-  const featuredProducts = getFeaturedProducts();
+export default async function Home() {
+  const featuredProducts = (await getProducts()).slice(0, 4);
 
   return (
-    <div className="space-y-16 pb-16">
+    <>
       {/* Hero Section */}
-      <section className="bg-secondary/50">
-        <div className="container mx-auto grid grid-cols-1 items-center gap-8 px-4 py-16 md:grid-cols-2 lg:py-24">
-          <div className="space-y-6 text-center md:text-right">
-            <h1 className="font-headline text-4xl font-bold tracking-tight text-primary md:text-5xl lg:text-6xl">
-              BuildMart: راه حل جامع شما برای تجهیزات تأسیساتی
+      <section className="relative h-[60vh] flex items-center justify-center text-center text-white bg-slate-800">
+          <Image 
+            src="https://placehold.co/1920x1080.png"
+            alt="پس زمینه تجهیزات ساختمانی"
+            fill
+            className="object-cover z-0 opacity-30"
+            priority
+            data-ai-hint="industrial equipment"
+          />
+          <div className="z-10 container">
+            <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
+              جامع‌ترین فروشگاه آنلاین تجهیزات تأسیساتی
             </h1>
-            <p className="text-lg text-muted-foreground">
-              با کیفیت ترین لوله ها، اتصالات و تجهیزات صنعتی را با قیمت های رقابتی پیدا کنید.
+            <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+              هر آنچه برای پروژه‌های ساختمانی خود نیاز دارید، با بهترین کیفیت و قیمت.
             </p>
-            <Button asChild size="lg" className="group">
-              <Link href="/products">
-                مشاهده محصولات
-                <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
-              </Link>
+            <Button asChild size="lg">
+              <Link href="/products">مشاهده همه محصولات</Link>
             </Button>
           </div>
-          <div className="relative h-64 w-full md:h-96">
-            <Image
-              src="https://placehold.co/600x400.png"
-              alt="تجهیزات تأسیساتی"
-              fill
-              className="rounded-lg object-cover shadow-lg"
-              data-ai-hint="industrial pipes"
-            />
-          </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-12 md:py-20">
+        <div className="container">
+          <h2 className="text-3xl font-bold text-center font-headline mb-10">محصولات منتخب</h2>
+          {featuredProducts.length > 0 ? (
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center">محصولی برای نمایش وجود ندارد.</p>
+          )}
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="container mx-auto px-4">
-        <div className="space-y-4 text-center">
-            <h2 className="font-headline text-3xl font-bold">دسته بندی محصولات</h2>
-            <p className="text-muted-foreground">مجموعه گسترده ما را کاوش کنید</p>
-        </div>
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-8">
-          {categories.map((category) => (
-            <Link key={category.id} href={`/products?category=${category.id}`}>
-              <Card className="group overflow-hidden transition-shadow hover:shadow-xl">
-                <CardContent className="p-0">
-                  <div className="relative aspect-square">
-                    <Image
-                      src={category.imageUrl}
-                      alt={category.name}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                      data-ai-hint={category.id}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold">{category.name}</h3>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+      <section className="bg-muted py-12 md:py-20">
+        <div className="container text-center">
+            <h2 className="text-3xl font-bold font-headline mb-10">دسته‌بندی‌ها</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {/* These would be dynamic in a real app */}
+                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p>لوله و اتصالات</p>
+                </Link>
+                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p>تجهیزات گرمایشی</p>
+                </Link>
+                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p>شیرآلات</p>
+                </Link>
+                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p>ابزارآلات</p>
+                </Link>
+                 <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <p>تجهیزات برقی</p>
+                </Link>
+            </div>
         </div>
       </section>
-
-      {/* Featured Products Section */}
-      <section className="container mx-auto px-4">
-        <div className="space-y-4 text-center">
-            <h2 className="font-headline text-3xl font-bold">محصولات ویژه</h2>
-            <p className="text-muted-foreground">پرفروش ترین ها و جدیدترین محصولات ما</p>
-        </div>
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-         <div className="mt-12 text-center">
-          <Button asChild variant="outline" size="lg" className="group">
-            <Link href="/products">
-                مشاهده همه محصولات
-              <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            </Link>
-          </Button>
-        </div>
-      </section>
-      
-      {/* Why Choose Us Section */}
-      <section className="bg-secondary/50">
-        <div className="container mx-auto px-4 py-16 text-center">
-          <h2 className="font-headline text-3xl font-bold">چرا BuildMart را انتخاب کنید؟</h2>
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="space-y-2">
-              <h3 className="font-headline text-xl font-semibold">کیفیت برتر</h3>
-              <p className="text-muted-foreground">محصولات تأیید شده از برندهای معتبر.</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-headline text-xl font-semibold">قیمت رقابتی</h3>
-              <p className="text-muted-foreground">بهترین معاملات برای پروژه های شما در هر مقیاسی.</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-headline text-xl font-semibold">پشتیبانی تخصصی</h3>
-              <p className="text-muted-foreground">تیم ما آماده کمک به شما در انتخاب محصولات مناسب است.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    </>
   );
 }
