@@ -4,13 +4,17 @@ import Link from 'next/link';
 import type { Category, Product } from '@/lib/types';
 import ProductList from '@/components/ProductList';
 
+// Revalidate the page on every request to get fresh data
 export const dynamic = 'force-dynamic';
 
 export default async function ProductsPage({ searchParams }: { searchParams?: { category?: string } }) {
   const selectedCategorySlug = searchParams?.category;
   
-  const products: Product[] = await getProducts(selectedCategorySlug); 
-  const categories: Category[] = await getCategories();
+  // Fetch products and categories in parallel for better performance
+  const [products, categories] = await Promise.all([
+    getProducts(selectedCategorySlug),
+    getCategories()
+  ]);
 
   const selectedCategoryName = selectedCategorySlug 
     ? categories.find(c => c.slug === selectedCategorySlug)?.name

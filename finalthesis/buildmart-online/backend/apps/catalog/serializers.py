@@ -8,7 +8,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
-
+    # The 'image' field, being an ImageField, automatically generates
+    # the full URL when requested through the API (e.g., /media/1/p-123.jpg)
+    
     class Meta:
         model = Product
         fields = [
@@ -21,6 +23,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'category', 
             'stock',
             'available',
-            'created', 
-            'updated'
+            'created_at', 
+            'updated_at'
         ]

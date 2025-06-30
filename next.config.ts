@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    // Allow images from the Django backend server
     remotePatterns: [
       {
         protocol: 'http',

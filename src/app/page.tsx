@@ -9,6 +9,7 @@ export default async function HomePage() {
 
   return (
     <main>
+      {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center justify-center text-center text-white bg-slate-800">
         <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div 
@@ -23,9 +24,13 @@ export default async function HomePage() {
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
               هر آنچه برای پروژه‌های ساختمانی خود نیاز دارید، با بهترین کیفیت و قیمت.
             </p>
+            <Link href="/products" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">
+                مشاهده همه محصولات
+            </Link>
         </div>
       </section>
 
+      {/* Categories Section */}
       <section className="bg-muted py-12 md:py-20">
         <div className="container text-center">
             <h2 className="text-3xl font-bold font-headline mb-10">دسته‌بندی‌ها</h2>
@@ -47,7 +52,7 @@ export default async function HomePage() {
             ) : (
               <div className="text-center py-10">
                 <p className="text-lg text-muted-foreground">دسته‌بندی برای نمایش وجود ندارد.</p>
-                <p className="text-sm mt-2">ممکن است سرور بک‌اند اجرا نشده باشد.</p>
+                <p className="text-sm mt-2">ممکن است سرور بک‌اند اجرا نشده باشد یا محصولات هنوز وارد پایگاه داده نشده باشند.</p>
               </div>
             )}
         </div>

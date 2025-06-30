@@ -13,7 +13,8 @@ export interface Product {
   price: string;
   image: string | null;
   category: Category;
+  stock: number;
   available: boolean;
-  created: string;
-  updated: string;
+  created_at: string;
+  updated_at: string;
 }
