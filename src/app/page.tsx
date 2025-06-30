@@ -1,23 +1,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { getProducts, getCategories } from '@/lib/api';
+import { getProducts, getCategories, getFullImageUrl } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 import type { Category } from '@/lib/types';
 import { HardHat } from 'lucide-react';
 
 export default async function Home() {
+  // Fetch only a few products for the homepage
   const allProducts = await getProducts();
-  // Show a few products from different categories
   const featuredProducts = allProducts.slice(0, 8);
   const categories = await getCategories();
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center text-white bg-slate-800">
+      <section className="relative h-[50vh] flex items-center justify-center text-center text-white bg-slate-800">
+          <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
           <Image 
-            src="/hero-background.jpg"
+            src="https://placehold.co/1200x600.png"
             alt="پس زمینه تجهیزات ساختمانی"
             fill
             className="object-cover z-0 opacity-30"
@@ -48,7 +49,10 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <p className="text-center">محصولی برای نمایش وجود ندارد.</p>
+            <div className="text-center py-10 bg-gray-50 rounded-lg">
+                <p className="text-lg text-muted-foreground">محصولی برای نمایش وجود ندارد.</p>
+                <p className="text-sm mt-2">ممکن است سرور بک‌اند اجرا نشده باشد یا محصولات هنوز وارد پایگاه داده نشده باشند.</p>
+            </div>
           )}
         </div>
       </section>
@@ -71,7 +75,9 @@ export default async function Home() {
                   ))}
               </div>
             ) : (
-              <p className="text-center">دسته‌بندی برای نمایش وجود ندارد.</p>
+                <div className="text-center py-10">
+                    <p className="text-lg text-muted-foreground">دسته‌بندی برای نمایش وجود ندارد.</p>
+                </div>
             )}
         </div>
       </section>

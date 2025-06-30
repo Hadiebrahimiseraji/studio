@@ -4,16 +4,14 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { Category, Product } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProductsPage({ searchParams }: { searchParams?: { category?: string } }) {
-  const products: Product[] = await getProducts(); 
+  const selectedCategorySlug = searchParams?.category;
+  
+  const products: Product[] = await getProducts(selectedCategorySlug); 
   const categories: Category[] = await getCategories();
 
-  const selectedCategorySlug = searchParams?.category;
-
-  const filteredProducts = selectedCategorySlug
-    ? products.filter(p => p.category.slug === selectedCategorySlug)
-    : products;
-    
   const selectedCategoryName = selectedCategorySlug 
     ? categories.find(c => c.slug === selectedCategorySlug)?.name
     : 'همه محصولات';
@@ -34,9 +32,9 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
         ))}
       </div>
       
-      {filteredProducts.length > 0 ? (
+      {products.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

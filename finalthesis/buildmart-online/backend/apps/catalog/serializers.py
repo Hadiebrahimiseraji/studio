@@ -3,33 +3,31 @@ from .models import Category, Brand, Product, ProductImage, SpecificationType, P
 from mptt.fields import TreeRelatedField
 
 class CategorySerializer(serializers.ModelSerializer):
-    parent = TreeRelatedField(queryset=Category.objects.all(), required=False, allow_null=True)
-
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ('id', 'name', 'slug', 'parent')
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = '__all__'
+        fields = ('id', 'name', 'slug')
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = '__all__'
+        fields = ('id', 'image', 'alt_text', 'is_feature')
 
 class SpecificationTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpecificationType
-        fields = '__all__'
+        fields = ('id', 'name')
 
 class ProductSpecificationSerializer(serializers.ModelSerializer):
     specification_type = SpecificationTypeSerializer(read_only=True)
 
     class Meta:
         model = ProductSpecification
-        fields = '__all__'
+        fields = ('id', 'specification_type', 'value')
 
 class ProductSerializer(serializers.ModelSerializer):
     images = ProductImageSerializer(many=True, read_only=True)

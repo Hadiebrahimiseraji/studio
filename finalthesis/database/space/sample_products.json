@@ -1,307 +1,155 @@
 
 [
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "کلکتور",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-2908.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "کلکتور", "image": "database/image/1/p-2908.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "لوله نیوپایپ (PEX_b/AL/PEX_b)",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13877.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "لوله نیوپایپ (PEX_b/AL/PEX_b)", "image": "database/image/1/p-13877.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "سه راهی تبدیل پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13960.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "سه راهی تبدیل پرسی", "image": "database/image/1/p-13960.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "زانو دیواری پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13957.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "زانو دیواری پرسی", "image": "database/image/1/p-13957.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "رابط روپیچ کوپلی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13846.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "رابط روپیچ کوپلی", "image": "database/image/1/p-13846.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "بوشن پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13962.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "بوشن پرسی", "image": "database/image/1/p-13962.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "نیوکلکتور کوپلی همراه با شیر تنظیم (دسته آبی و قرمز)",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-2910.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "نیوکلکتور کوپلی همراه با شیر تنظیم (دسته آبی و قرمز)", "image": "database/image/1/p-2910.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "رابط روپیچ پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13951.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "رابط روپیچ پرسی", "image": "database/image/1/p-13951.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "زانو90ᵒ پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13953.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "زانو90ᵒ پرسی", "image": "database/image/1/p-13953.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "صفحه نصب زوج",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-2900.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "صفحه نصب زوج", "image": "database/image/1/p-2900.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "سه راهی پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13954.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "سه راهی پرسی", "image": "database/image/1/p-13954.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "زانو90ᵒروپیچ کوپلی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13864.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "زانو90ᵒروپیچ کوپلی", "image": "database/image/1/p-13864.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "زانو چپقی پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13955.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "زانو چپقی پرسی", "image": "database/image/1/p-13955.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "رابط توپیچ کوپلی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13893.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "رابط توپیچ کوپلی", "image": "database/image/1/p-13893.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "سه راهی 90ᵒدیواری پرسی",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13950.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "سه راهی 90ᵒدیواری پرسی", "image": "database/image/1/p-13950.jpg"
   },
   {
-    "category": "لوله واتصالات پنج لایه نیوپایپ",
-    "title": "لوله نیوپایپ (PE-RT/AL/PE-RT)",
-    "price": 150000,
-    "brand": "NewPipe",
-    "image": "database/image/1/p-13633.jpg",
-    "specs": {}
+    "category": "لوله واتصالات پنج لایه نیوپایپ", "brand": "NewPipe", "price": 150000,
+    "title": "لوله نیوپایپ (PE-RT/AL/PE-RT)", "image": "database/image/1/p-13633.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "لوله تک لایه سفید PPR",
-    "price": 120000,
-    "brand": "Azin",
-    "image": "database/image/2/p-13733.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 120000,
+    "title": "لوله تک لایه سفید PPR", "image": "database/image/2/p-13733.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "زانو 90",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-2416.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "زانو 90", "image": "database/image/2/p-2416.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "سه راهی",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-13523.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "سه راهی", "image": "database/image/2/p-13523.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "لوله تک لایه سفید PP-RCT",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-2968.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "لوله تک لایه سفید PP-RCT", "image": "database/image/2/p-2968.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "سه راهی تبدیل",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-13170.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "سه راهی تبدیل", "image": "database/image/2/p-13170.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "بوشن",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-13288.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "بوشن", "image": "database/image/2/p-13288.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "بوشن یکسر فلزی",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-1853.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "بوشن یکسر فلزی", "image": "database/image/2/p-1853.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "زانو یکسر بوشن فلزی",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-12974.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "زانو یکسر بوشن فلزی", "image": "database/image/2/p-12974.jpg"
   },
   {
-    "category": "لوله و اتصالات تک لایه آذین",
-    "title": "زانو بوشن فلزی دیواری",
-    "price": 95000,
-    "brand": "Azin",
-    "image": "database/image/2/p-1511.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات تک لایه آذین", "brand": "Azin", "price": 95000,
+    "title": "زانو بوشن فلزی دیواری", "image": "database/image/2/p-1511.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "لوله فاضلابی PVC-U (BD)",
-    "price": 350000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13947.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 350000,
+    "title": "لوله فاضلابی PVC-U (BD)", "image": "database/image/3/p-13947.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "زانو 45 درجه PVC-U",
-    "price": 300000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13908.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 300000,
+    "title": "زانو 45 درجه PVC-U", "image": "database/image/3/p-13908.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "سه راهی تبدیلی 45 درجه PVC-U",
-    "price": 300000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13910.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 300000,
+    "title": "سه راهی تبدیلی 45 درجه PVC-U", "image": "database/image/3/p-13910.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "زانو 87 درجه PVC-U",
-    "price": 300000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13802.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 300000,
+    "title": "زانو 87 درجه PVC-U", "image": "database/image/3/p-13802.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "لوله آب باران (ناودانی) PVC-U",
-    "price": 300000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13946.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 300000,
+    "title": "لوله آب باران (ناودانی) PVC-U", "image": "database/image/3/p-13946.jpg"
   },
   {
-    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
-    "title": "سه راهی 45 درجه PVC-U",
-    "price": 300000,
-    "brand": "MultiPipe",
-    "image": "database/image/3/p-13654.jpg",
-    "specs": {}
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ", "brand": "MultiPipe", "price": 300000,
+    "title": "سه راهی 45 درجه PVC-U", "image": "database/image/3/p-13654.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلن PE80 - فشار 6 اتمسفر - SDR 21",
-    "price": 420000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13351.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 420000,
+    "title": "لوله پلی اتیلن PE80 - فشار 6 اتمسفر - SDR 21", "image": "database/image/4/p-13351.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلن PE100 فشار 10 اتمسفر - SDR 17",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-1959.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله پلی اتیلن PE100 فشار 10 اتمسفر - SDR 17", "image": "database/image/4/p-1959.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله آبیاری پلی اتیلن PE40",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13333.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله آبیاری پلی اتیلن PE40", "image": "database/image/4/p-13333.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلنPE80فشار 10 اتمسفر - SDR 13.6",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13334.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله پلی اتیلنPE80فشار 10 اتمسفر - SDR 13.6", "image": "database/image/4/p-13334.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلنPE80فشار 12/5 اتمسفر - SDR 11",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13331.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله پلی اتیلنPE80فشار 12/5 اتمسفر - SDR 11", "image": "database/image/4/p-13331.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلن PE80فشار 8 اتمسفر - SDR 17",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13471.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله پلی اتیلن PE80فشار 8 اتمسفر - SDR 17", "image": "database/image/4/p-13471.jpg"
   },
   {
-    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
-    "title": "لوله پلی اتیلن PE100فشار 8 اتمسفر - SDR 21",
-    "price": 480000,
-    "brand": "DinaPolymer",
-    "image": "database/image/4/p-13344.jpg",
-    "specs": {}
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر", "brand": "DinaPolymer", "price": 480000,
+    "title": "لوله پلی اتیلن PE100فشار 8 اتمسفر - SDR 21", "image": "database/image/4/p-13344.jpg"
   }
 ]

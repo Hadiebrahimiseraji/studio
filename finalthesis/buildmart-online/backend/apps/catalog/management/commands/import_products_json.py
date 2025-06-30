@@ -2,6 +2,7 @@ import json
 import os
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
+from django.conf import settings
 
 from apps.catalog.models import Category, Brand, Product, ProductImage, SpecificationType, ProductSpecification
 
@@ -10,9 +11,8 @@ class Command(BaseCommand):
     help = 'Imports products from sample_products.json into the database.'
 
     def handle(self, *args, **options):
-        # This command is run from the `backend` directory where manage.py is.
-        # The path to the json file is relative to that directory.
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), *['..']*6))
+        # The path to the json file is relative to the project root (finalthesis)
+        project_root = settings.BASE_DIR.parent.parent.parent
         json_file_path = os.path.join(project_root, 'database', 'space', 'sample_products.json')
 
         if not os.path.exists(json_file_path):
@@ -25,7 +25,8 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Starting product import...'))
         
         Product.objects.all().delete()
-        self.stdout.write(self.style.WARNING('Existing products deleted.'))
+        ProductImage.objects.all().delete()
+        self.stdout.write(self.style.WARNING('Existing products and images deleted.'))
 
         for product_data in products_data:
             category_name = product_data.get('category')
@@ -51,16 +52,24 @@ class Command(BaseCommand):
                 self.stderr.write(self.style.WARNING('Skipping product with no title.'))
                 continue
 
+            product_slug = slugify(product_name, allow_unicode=True)
+            # Ensure slug is unique
+            unique_slug = product_slug
+            counter = 1
+            while Product.objects.filter(slug=unique_slug).exists():
+                unique_slug = f'{product_slug}-{counter}'
+                counter += 1
+
             product, created = Product.objects.update_or_create(
-                name=product_name,
-                category=category,
+                slug=unique_slug,
                 defaults={
+                    'name': product_name,
+                    'category': category,
                     'brand': brand,
                     'description': product_data.get('description', ''),
                     'price': product_data.get('price', 0.0),
                     'stock': product_data.get('stock', 10),
                     'available': True,
-                    'slug': slugify(product_name, allow_unicode=True),
                 }
             )
 
@@ -76,8 +85,6 @@ class Command(BaseCommand):
                 image_disk_path = os.path.join(project_root, image_path_from_json)
                 
                 if os.path.exists(image_disk_path):
-                    product.images.all().delete()
-                    
                     # The path stored in the DB must be relative to MEDIA_ROOT.
                     # MEDIA_ROOT is '.../finalthesis/database/'.
                     # image_path_from_json is 'database/image/1/p-123.jpg'.

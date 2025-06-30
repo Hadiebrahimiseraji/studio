@@ -10,7 +10,7 @@ export default function Footer() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">لینک‌های سریع</h4>
+              <h4 className="font-semibold mb-4 text-foreground">لینک‌های سریع</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="/products" className="hover:text-primary">محصولات</a></li>
                 <li><a href="/about" className="hover:text-primary">درباره ما</a></li>
@@ -18,7 +18,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">خدمات مشتریان</h4>
+              <h4 className="font-semibold mb-4 text-foreground">خدمات مشتریان</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="hover:text-primary">پرسش‌های متداول</a></li>
                 <li><a href="#" className="hover:text-primary">پیگیری سفارش</a></li>
@@ -26,7 +26,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">با ما در ارتباط باشید</h4>
+              <h4 className="font-semibold mb-4 text-foreground">با ما در ارتباط باشید</h4>
               <p className="text-sm">مازندران، بابل، جاده قائمشهر</p>
               <p className="text-sm">info@pype.ir</p>
             </div>

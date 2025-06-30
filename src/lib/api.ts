@@ -7,9 +7,10 @@ const apiClient = axios.create({
   baseURL: API_BASE_URL,
 });
 
-export async function getProducts(): Promise<Product[]> {
+export async function getProducts(categorySlug?: string): Promise<Product[]> {
   try {
-    const response = await apiClient.get('/catalog/products/');
+    const url = categorySlug ? `/catalog/products/?category=${categorySlug}` : '/catalog/products/';
+    const response = await apiClient.get(url);
     return response.data;
   } catch (error) {
     console.error('Failed to fetch products:', error);
@@ -45,5 +46,6 @@ export function getFullImageUrl(imagePath: string): string {
     }
     // Otherwise, prepend the backend URL
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:8000';
+    // The imagePath from API is already a full path like '/media/image/1/foo.jpg'
     return `${backendUrl}${imagePath}`;
 }

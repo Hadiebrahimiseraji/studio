@@ -1,24 +1,18 @@
 import type { Metadata } from "next";
-import { PT_Sans, Space_Grotesk } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const ptSans = PT_Sans({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-pt-sans",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazirmatn",
 });
 
 export const metadata: Metadata = {
   title: "پایپ | فروشگاه آنلاین تجهیزات تأسیساتی",
-  description: "فروشگاه آنلاین تجهیزات و لوازم تأسیساتی پایپ",
+  description: "فروشگاه آنلاین تجهیزات و لوازم تأسیساتی پایپ (BuildMart Online)",
 };
 
 export default function RootLayout({
@@ -31,8 +25,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-body antialiased",
-          ptSans.variable,
-          spaceGrotesk.variable
+          vazirmatn.variable
         )}
       >
         <div className="relative flex min-h-screen flex-col">
