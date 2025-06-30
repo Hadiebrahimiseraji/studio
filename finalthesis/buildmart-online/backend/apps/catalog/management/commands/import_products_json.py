@@ -1,7 +1,6 @@
 import json
 import os
 from django.core.management.base import BaseCommand
-from django.core.files import File
 from django.utils.text import slugify
 
 from apps.catalog.models import Category, Brand, Product, ProductImage, SpecificationType, ProductSpecification
@@ -72,20 +71,23 @@ class Command(BaseCommand):
             else:
                 self.stdout.write(f'Updated product: {product.name}')
 
-            # Import Image
+            # Import Image by linking the existing path
             image_path_from_json = product_data.get('image')
             if image_path_from_json:
-                image_filename = os.path.basename(image_path_from_json)
-                # Construct the full disk path from the project root
+                # Construct the full disk path to verify existence
                 image_disk_path = os.path.join(project_root, image_path_from_json)
                 
                 if os.path.exists(image_disk_path):
                     # Clear existing images for the product to prevent duplicates
                     product.images.all().delete()
-                    with open(image_disk_path, 'rb') as f:
-                        product_image = ProductImage(product=product, alt_text=f'{product.name} Image')
-                        product_image.image.save(image_filename, File(f), save=True)
-                        self.stdout.write(f'  - Added image {image_filename} to {product.name}')
+                    
+                    # Create a new ProductImage instance and set its 'image.name'
+                    # This tells Django where the file is located relative to MEDIA_ROOT,
+                    # without copying or moving the file.
+                    product_image = ProductImage(product=product, alt_text=f'{product.name} Image')
+                    product_image.image.name = image_path_from_json
+                    product_image.save()
+                    self.stdout.write(f'  - Linked image {image_path_from_json} to {product.name}')
                 else:
                     self.stderr.write(self.style.WARNING(f'  - Image file not found: {image_disk_path} for product {product.name}'))
 
