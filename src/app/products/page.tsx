@@ -8,23 +8,27 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
   const products: Product[] = await getProducts(); 
   const categories: Category[] = await getCategories();
 
-  const selectedCategory = searchParams?.category;
+  const selectedCategorySlug = searchParams?.category;
 
-  const filteredProducts = selectedCategory
-    ? products.filter(p => p.category.slug === selectedCategory)
+  const filteredProducts = selectedCategorySlug
+    ? products.filter(p => p.category.slug === selectedCategorySlug)
     : products;
+    
+  const selectedCategoryName = selectedCategorySlug 
+    ? categories.find(c => c.slug === selectedCategorySlug)?.name
+    : 'همه محصولات';
 
   return (
     <div className="container py-8">
-      <h1 className="text-3xl font-bold font-headline mb-4">همه محصولات</h1>
+      <h1 className="text-3xl font-bold font-headline mb-4">{selectedCategoryName}</h1>
       
       <div className="flex flex-wrap items-center gap-2 mb-8 border-b pb-4">
         <span className="font-semibold ml-2">دسته‌بندی‌ها:</span>
-        <Button asChild variant={!selectedCategory ? 'default' : 'outline'} size="sm">
+        <Button asChild variant={!selectedCategorySlug ? 'secondary' : 'outline'} size="sm" className="rounded-full">
           <Link href="/products">همه</Link>
         </Button>
         {categories.map((category) => (
-          <Button asChild key={category.id} variant={selectedCategory === category.slug ? 'default' : 'outline'} size="sm">
+          <Button asChild key={category.id} variant={selectedCategorySlug === category.slug ? 'secondary' : 'outline'} size="sm" className="rounded-full">
             <Link href={`/products?category=${category.slug}`}>{category.name}</Link>
           </Button>
         ))}

@@ -8,7 +8,8 @@ import { HardHat } from 'lucide-react';
 
 export default async function Home() {
   const allProducts = await getProducts();
-  const featuredProducts = allProducts.slice(0, 4);
+  // Show a few products from different categories
+  const featuredProducts = allProducts.slice(0, 8);
   const categories = await getCategories();
 
   return (
@@ -16,7 +17,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center text-center text-white bg-slate-800">
           <Image 
-            src="https://placehold.co/1920x1080.png"
+            src="/hero-background.jpg"
             alt="پس زمینه تجهیزات ساختمانی"
             fill
             className="object-cover z-0 opacity-30"
@@ -57,7 +58,7 @@ export default async function Home() {
         <div className="container text-center">
             <h2 className="text-3xl font-bold font-headline mb-10">دسته‌بندی‌ها</h2>
             {categories.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {categories.map((category: Category) => (
                       <Link 
                         href={`/products?category=${category.slug}`} 

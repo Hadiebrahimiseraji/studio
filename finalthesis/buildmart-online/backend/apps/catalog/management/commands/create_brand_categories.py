@@ -1,59 +1,49 @@
 from django.core.management.base import BaseCommand
+from django.utils.text import slugify
 from apps.catalog.models import Category, Brand
-from mptt.utils import register
 
 class Command(BaseCommand):
     help = 'Creates default categories and brands for BuildMart Online.'
 
     def handle(self, *args, **options):
-        self.stdout.write('Creating default categories...')
+        self.stdout.write('Creating default categories and brands...')
 
-        # Register the Category model with MPTT if not already registered
-        try:
-            register(Category)
-        except:
-            pass # Already registered
+        # Deleting existing data to avoid conflicts
+        Category.objects.all().delete()
+        Brand.objects.all().delete()
+        self.stdout.write(self.style.WARNING('Existing categories and brands deleted.'))
 
-        # Create root category
-        root_category, created = Category.objects.get_or_create(name='All Products', slug='all-products')
-        if created:
-            self.stdout.write(self.style.SUCCESS(f'Successfully created category: {root_category.name}'))
-
-        # Example subcategories
-        categories_to_create = [
-            {'name': 'Plumbing', 'slug': 'plumbing', 'parent': root_category},
-            {'name': 'Electrical', 'slug': 'electrical', 'parent': root_category},
-            {'name': 'HVAC', 'slug': 'hvac', 'parent': root_category},
-            {'name': 'Tools & Hardware', 'slug': 'tools-hardware', 'parent': root_category},
-            {'name': 'Safety Equipment', 'slug': 'safety-equipment', 'parent': root_category},
+        categories_data = [
+            'لوله واتصالات پنج لایه نیوپایپ',
+            'لوله و اتصالات تک لایه آذین',
+            'لوله و اتصالات فاضلابی مولتی پایپ',
+            'محصولات پلی اتیلن آبیاری دینا پلیمر',
         ]
 
-        for cat_data in categories_to_create:
-            parent = cat_data.pop('parent')
-            category, created = Category.objects.get_or_create(parent=parent, **cat_data)
+        brands_data = {
+            'لوله واتصالات پنج لایه نیوپایپ': 'NewPipe',
+            'لوله و اتصالات تک لایه آذین': 'Azin',
+            'لوله و اتصالات فاضلابی مولتی پایپ': 'MultiPipe',
+            'محصولات پلی اتیلن آبیاری دینا پلیمر': 'DinaPolymer',
+        }
+
+        for cat_name in categories_data:
+            slug = slugify(cat_name, allow_unicode=True)
+            category, created = Category.objects.get_or_create(
+                name=cat_name,
+                defaults={'slug': slug}
+            )
             if created:
                 self.stdout.write(self.style.SUCCESS(f'Successfully created category: {category.name}'))
-            else:
-                self.stdout.write(self.style.SUCCESS(f'Category already exists: {category.name}'))
 
-
-        self.stdout.write('Creating default brands...')
-
-        brands_to_create = [
-            {'name': 'Bosch', 'slug': 'bosch'},
-            {'name': 'Makita', 'slug': 'makita'},
-            {'name': 'Grundfos', 'slug': 'grundfos'},
-            {'name': 'Schneider Electric', 'slug': 'schneider-electric'},
-            {'name': 'Ductso', 'slug': 'ductso'},
-            {'name': '3M', 'slug': '3m'},
-        ]
-
-        for brand_data in brands_to_create:
-            brand, created = Brand.objects.get_or_create(**brand_data)
-            if created:
-                self.stdout.write(self.style.SUCCESS(f'Successfully created brand: {brand.name}'))
-            else:
-                 self.stdout.write(self.style.SUCCESS(f'Brand already exists: {brand.name}'))
-
+            brand_name = brands_data.get(cat_name)
+            if brand_name:
+                brand_slug = slugify(brand_name)
+                brand, created = Brand.objects.get_or_create(
+                    name=brand_name,
+                    defaults={'slug': brand_slug}
+                )
+                if created:
+                    self.stdout.write(self.style.SUCCESS(f'Successfully created brand: {brand.name}'))
 
         self.stdout.write(self.style.SUCCESS('Default categories and brands created successfully.'))
