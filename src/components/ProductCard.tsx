@@ -10,17 +10,16 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const imageUrl = product.images.length > 0 ? getFullImageUrl(product.images[0].image) : 'https://placehold.co/400x400.png';
-  const imageAlt = product.images.length > 0 ? product.images[0].alt_text : product.name;
+  const imageUrl = product.image ? getFullImageUrl(product.image) : 'https://placehold.co/400x400.png';
 
   return (
-    <Card className="flex flex-col overflow-hidden transition-shadow hover:shadow-lg">
+    <Card className="flex flex-col overflow-hidden transition-shadow hover:shadow-lg h-full">
       <CardHeader className="p-0 border-b">
         <Link href={`/products/${product.id}`} className="block">
           <div className="relative aspect-square w-full">
             <Image
               src={imageUrl}
-              alt={imageAlt || product.name}
+              alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"

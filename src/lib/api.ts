@@ -4,11 +4,12 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/a
 
 export async function getProducts(categorySlug?: string): Promise<Product[]> {
   try {
-    const url = categorySlug 
-      ? `${API_BASE_URL}/catalog/products/?category=${categorySlug}` 
-      : `${API_BASE_URL}/catalog/products/`;
+    const url = new URL(`${API_BASE_URL}/catalog/products/`);
+    if (categorySlug) {
+      url.searchParams.append('category', categorySlug);
+    }
       
-    const response = await fetch(url, { cache: 'no-store' });
+    const response = await fetch(url.toString(), { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -50,9 +51,11 @@ export async function getCategories(): Promise<Category[]> {
 
 export function getFullImageUrl(imagePath: string): string {
     if (!imagePath) return 'https://placehold.co/400x400.png';
+    // If imagePath is a full URL, return it directly
     if (imagePath.startsWith('http')) {
         return imagePath;
     }
+    // Otherwise, construct the full URL from the backend base
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:8000';
     return `${backendUrl}${imagePath}`;
 }

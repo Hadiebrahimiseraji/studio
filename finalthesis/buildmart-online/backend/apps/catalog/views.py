@@ -1,41 +1,22 @@
 from rest_framework import generics
-from .models import Category, Brand, Product
-from .serializers import CategorySerializer, BrandSerializer, ProductSerializer
+from .models import Product, Category
+from .serializers import ProductSerializer, CategorySerializer
 
-class CategoryList(generics.ListAPIView):
-    queryset = Category.objects.filter(parent=None) # Only top-level categories
-    serializer_class = CategorySerializer
-
-class CategoryDetail(generics.RetrieveAPIView):
+class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    lookup_field = 'pk'
 
-class BrandList(generics.ListAPIView):
-    queryset = Brand.objects.all()
-    serializer_class = BrandSerializer
-
-class BrandDetail(generics.RetrieveAPIView):
-    queryset = Brand.objects.all()
-    serializer_class = BrandSerializer
-    lookup_field = 'pk'
-
-
-class ProductList(generics.ListAPIView):
+class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        """
-        Optionally restricts the returned products to a given category,
-        by filtering against a `category` query parameter in the URL.
-        """
-        queryset = Product.objects.all().prefetch_related('images', 'specifications__specification_type').order_by('-created')
-        category_slug = self.request.query_params.get('category')
+        queryset = Product.objects.filter(available=True).select_related('category')
+        category_slug = self.request.query_params.get('category', None)
         if category_slug:
             queryset = queryset.filter(category__slug=category_slug)
         return queryset
 
-class ProductDetail(generics.RetrieveAPIView):
-    queryset = Product.objects.all().prefetch_related('images', 'specifications__specification_type')
+class ProductDetailView(generics.RetrieveAPIView):
+    queryset = Product.objects.filter(available=True).select_related('category')
     serializer_class = ProductSerializer
     lookup_field = 'id'
