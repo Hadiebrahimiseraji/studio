@@ -1,0 +1,90 @@
+[
+  {
+    "category": "لوله واتصالات پنج لایه نیوپایپ",
+    "title": "زانو دیواری پرسی 20×1/2\u2033",
+    "price": 225000,
+    "brand": "NewPipe",
+    "image": "database/images/1/p-13957.jpg",
+    "specs": {
+      "جنس": "PEX/AL/PEX",
+      "فشار کاری": "10 bar"
+    }
+  },
+  {
+    "category": "لوله واتصالات پنج لایه نیوپایپ",
+    "title": "سه راهی تبدیل پرسی 20×16",
+    "price": 180000,
+    "brand": "NewPipe",
+    "image": "database/images/1/p-13960.jpg",
+    "specs": {
+      "جنس": "PEX/AL/PEX",
+      "فشار کاری": "10 bar"
+    }
+  },
+  {
+    "category": "لوله و اتصالات تک لایه آذین",
+    "title": "لوله تک لایه سفید PPR",
+    "price": 120000,
+    "brand": "Azin",
+    "image": "database/images/2/p-13733.jpg",
+    "specs": {
+      "قطر": "20mm",
+      "فشار کاری": "20 bar"
+    }
+  },
+  {
+    "category": "لوله و اتصالات تک لایه آذین",
+    "title": "زانو 90",
+    "price": 95000,
+    "brand": "Azin",
+    "image": "database/images/2/p-2416.jpg",
+    "specs": {
+      "زاویه": "90",
+      "جنس": "PPR"
+    }
+  },
+  {
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
+    "title": "لوله فاضلابی PVC-U (BD)",
+    "price": 350000,
+    "brand": "MultiPipe",
+    "image": "database/images/3/p-13947.jpg",
+    "specs": {
+      "جنس": "PVC-U",
+      "قطر": "110mm"
+    }
+  },
+  {
+    "category": "لوله و اتصالات فاضلابی مولتی پایپ",
+    "title": "زانو 45 درجه PVC-U",
+    "price": 300000,
+    "brand": "MultiPipe",
+    "image": "database/images/3/p-13908.jpg",
+    "specs": {
+      "زاویه": "45",
+      "جنس": "PVC-U"
+    }
+  },
+  {
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
+    "title": "لوله پلی اتیلن PE80 - فشار 6 اتمسفر - SDR 21",
+    "price": 420000,
+    "brand": "DinaPolymer",
+    "image": "database/images/4/p-13351.jpg",
+    "specs": {
+      "فشار": "6bar",
+      "جنس": "PE80"
+    }
+  },
+  {
+    "category": "محصولات پلی اتیلن آبیاری دینا پلیمر",
+    "title": "لوله پلی اتیلن PE100 فشار 10 اتمسفر - SDR 17",
+    "price": 480000,
+    "brand": "DinaPolymer",
+    "image": "database/images/4/p-1959.jpg",
+    "specs": {
+      "فشار": "10bar",
+      "جنس": "PE100"
+    }
+  }
+]
