@@ -27,65 +27,70 @@ class Command(BaseCommand):
             category_name = product_data.get('category', 'Uncategorized')
             category, created = Category.objects.get_or_create(
                 name=category_name,
-                slug=slugify(category_name)
+                defaults={'slug': slugify(category_name)}
             )
             if created:
                 self.stdout.write(f'Created category: {category_name}')
 
-            # Get or create Brand (assuming brand is part of product data if needed)
-            # For now, we'll skip brand or assume a default if not in JSON
+            # Get or create Brand
+            brand_name = product_data.get('brand')
+            brand = None
+            if brand_name:
+                brand, _ = Brand.objects.get_or_create(
+                    name=brand_name,
+                    defaults={'slug': slugify(brand_name)}
+                )
+
+            product_name = product_data.get('title')
+            if not product_name:
+                self.stderr.write(self.style.WARNING('Skipping product with no title.'))
+                continue
 
             # Create Product
             product, created = Product.objects.get_or_create(
-                id=product_data.get('id'), # Assuming ID is in JSON and unique
+                name=product_name,
                 defaults={
-                    'name': product_data.get('name'),
                     'category': category,
+                    'brand': brand,
                     'description': product_data.get('description', ''),
                     'price': product_data.get('price', 0.0),
-                    'stock': product_data.get('stock', 0),
-                    'available': product_data.get('available', True),
-                    'slug': slugify(product_data.get('name', '')),
+                    'stock': product_data.get('stock', 10),
+                    'available': True,
+                    'slug': slugify(product_name),
                 }
             )
 
             if created:
                 self.stdout.write(f'Created product: {product.name}')
             else:
-                self.stdout.write(f'Product with ID {product.id} already exists, skipping creation.')
-                continue # Skip if product already exists based on ID
+                self.stdout.write(f'Product "{product.name}" already exists, skipping creation.')
+                continue
 
-            # Import Images
-            image_urls = product_data.get('image_urls', [])
-            for i, image_url in enumerate(image_urls):
-                # Assuming image_url is just the filename relative to database/images/
-                image_filename = os.path.basename(image_url)
-                image_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'database', 'images', image_filename)
-
-                if os.path.exists(image_path):
-                    with open(image_path, 'rb') as f:
-                        product_image = ProductImage(product=product, alt_text=f'{product.name} Image {i+1}')
+            # Import Image
+            image_path_from_json = product_data.get('image')
+            if image_path_from_json:
+                image_filename = os.path.basename(image_path_from_json)
+                # This path is relative to the command file location
+                image_disk_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'database', 'images', image_filename))
+                
+                if os.path.exists(image_disk_path):
+                    with open(image_disk_path, 'rb') as f:
+                        product_image = ProductImage(product=product, alt_text=f'{product.name} Image')
                         product_image.image.save(image_filename, File(f), save=True)
                         self.stdout.write(f'Added image {image_filename} to {product.name}')
                 else:
-                    self.stderr.write(self.style.WARNING(f'Image file not found: {image_path}'))
+                    self.stderr.write(self.style.WARNING(f'Image file not found: {image_disk_path} for product {product.name}'))
 
-
-            # Import Specifications (Assuming 'specifications' is a dict in JSON)
-            specifications_data = product_data.get('specifications', {})
+            # Import Specifications
+            specifications_data = product_data.get('specs', {})
             for spec_name, spec_value in specifications_data.items():
-                spec_type, created = SpecificationType.objects.get_or_create(
+                spec_type, _ = SpecificationType.objects.get_or_create(
                     name=spec_name
                 )
-                if created:
-                    self.stdout.write(f'Created specification type: {spec_name}')
-
                 ProductSpecification.objects.create(
                     product=product,
-                    type=spec_type,
-                    value=str(spec_value) # Store value as string
+                    specification_type=spec_type,
+                    value=str(spec_value)
                 )
-                # self.stdout.write(f'Added specification "{spec_name}: {spec_value}" to {product.name}')
-
 
         self.stdout.write(self.style.SUCCESS('Product import finished.'))
