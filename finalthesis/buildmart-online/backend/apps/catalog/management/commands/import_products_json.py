@@ -10,10 +10,9 @@ class Command(BaseCommand):
     help = 'Imports products from sample_products.json into the database.'
 
     def handle(self, *args, **options):
-        # The script is in finalthesis/buildmart-online/backend/apps/catalog/management/commands
-        # The project root (finalthesis) is 6 levels up from this script's directory.
+        # This command is run from the `backend` directory where manage.py is.
+        # The path to the json file is relative to that directory.
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), *['..']*6))
-
         json_file_path = os.path.join(project_root, 'database', 'space', 'sample_products.json')
 
         if not os.path.exists(json_file_path):
@@ -25,7 +24,6 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Starting product import...'))
         
-        # Clear existing products to avoid duplicates on re-run
         Product.objects.all().delete()
         self.stdout.write(self.style.WARNING('Existing products deleted.'))
 
@@ -73,21 +71,23 @@ class Command(BaseCommand):
 
             # Import Image by linking the existing path
             image_path_from_json = product_data.get('image')
-            if image_path_from_json:
-                # Construct the full disk path to verify existence
+            if image_path_from_json and image_path_from_json.strip():
+                # The full path on disk to check for existence
                 image_disk_path = os.path.join(project_root, image_path_from_json)
                 
                 if os.path.exists(image_disk_path):
-                    # Clear existing images for the product to prevent duplicates
                     product.images.all().delete()
                     
-                    # Create a new ProductImage instance and set its 'image.name'
-                    # This tells Django where the file is located relative to MEDIA_ROOT,
-                    # without copying or moving the file.
+                    # The path stored in the DB must be relative to MEDIA_ROOT.
+                    # MEDIA_ROOT is '.../finalthesis/database/'.
+                    # image_path_from_json is 'database/image/1/p-123.jpg'.
+                    # We need to store 'image/1/p-123.jpg' in the database.
+                    db_image_path = image_path_from_json.replace('database/', '', 1)
+
                     product_image = ProductImage(product=product, alt_text=f'{product.name} Image')
-                    product_image.image.name = image_path_from_json
+                    product_image.image.name = db_image_path
                     product_image.save()
-                    self.stdout.write(f'  - Linked image {image_path_from_json} to {product.name}')
+                    self.stdout.write(f'  - Linked image {db_image_path} to {product.name}')
                 else:
                     self.stderr.write(self.style.WARNING(f'  - Image file not found: {image_disk_path} for product {product.name}'))
 
