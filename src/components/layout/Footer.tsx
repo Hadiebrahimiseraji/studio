@@ -4,7 +4,7 @@ export default function Footer() {
         <div className="container py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold font-headline text-foreground mb-4">BuildMart Online</h3>
+              <h3 className="font-bold font-headline text-foreground mb-4">پایپ</h3>
               <p className="text-sm">
                 تأمین‌کننده آنلاین تجهیزات تأسیساتی و ساختمانی.
               </p>
@@ -27,12 +27,12 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">با ما در ارتباط باشید</h4>
-              <p className="text-sm">تهران، خیابان صنعت، پلاک ۱۲۳</p>
-              <p className="text-sm">info@buildmart.ir</p>
+              <p className="text-sm">مازندران، بابل، جاده قائمشهر</p>
+              <p className="text-sm">info@pype.ir</p>
             </div>
           </div>
           <div className="border-t mt-8 pt-6 text-center text-xs">
-            <p>&copy; {new Date().getFullYear()} BuildMart Online. تمام حقوق محفوظ است.</p>
+            <p>&copy; {new Date().getFullYear()} پایپ. تمام حقوق محفوظ است.</p>
           </div>
         </div>
       </footer>

@@ -17,8 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "BuildMart Online",
-  description: "فروشگاه آنلاین تجهیزات و لوازم تأسیساتی",
+  title: "پایپ | فروشگاه آنلاین تجهیزات تأسیساتی",
+  description: "فروشگاه آنلاین تجهیزات و لوازم تأسیساتی پایپ",
 };
 
 export default function RootLayout({

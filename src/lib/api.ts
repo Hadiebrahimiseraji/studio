@@ -1,4 +1,4 @@
-import type { Product } from './types';
+import type { Product, Category } from './types';
 import axios from 'axios';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api';
@@ -13,7 +13,6 @@ export async function getProducts(): Promise<Product[]> {
     return response.data;
   } catch (error) {
     console.error('Failed to fetch products:', error);
-    // In a real app, you'd want to handle this more gracefully
     return [];
   }
 }
@@ -24,16 +23,27 @@ export async function getProductById(id: string | number): Promise<Product | nul
     return response.data;
   } catch (error) {
     console.error(`Failed to fetch product with id ${id}:`, error);
-    // In a real app, you'd want to handle this more gracefully
     return null;
   }
 }
 
+export async function getCategories(): Promise<Category[]> {
+    try {
+      const response = await apiClient.get('/catalog/categories/');
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+      return [];
+    }
+  }
+
 export function getFullImageUrl(imagePath: string): string {
-    if (!imagePath) return '';
+    if (!imagePath) return 'https://placehold.co/400x400.png';
+    // If the path is already a full URL, return it
     if (imagePath.startsWith('http')) {
         return imagePath;
     }
+    // Otherwise, prepend the backend URL
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://127.0.0.1:8000';
     return `${backendUrl}${imagePath}`;
 }

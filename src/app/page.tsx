@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { getProducts } from '@/lib/api';
+import { getProducts, getCategories } from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
+import type { Category } from '@/lib/types';
+import { HardHat } from 'lucide-react';
 
 export default async function Home() {
-  const featuredProducts = (await getProducts()).slice(0, 4);
+  const allProducts = await getProducts();
+  const featuredProducts = allProducts.slice(0, 4);
+  const categories = await getCategories();
 
   return (
     <>
@@ -17,7 +21,7 @@ export default async function Home() {
             fill
             className="object-cover z-0 opacity-30"
             priority
-            data-ai-hint="industrial equipment"
+            data-ai-hint="industrial equipment pipes"
           />
           <div className="z-10 container">
             <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
@@ -52,24 +56,22 @@ export default async function Home() {
       <section className="bg-muted py-12 md:py-20">
         <div className="container text-center">
             <h2 className="text-3xl font-bold font-headline mb-10">دسته‌بندی‌ها</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {/* These would be dynamic in a real app */}
-                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p>لوله و اتصالات</p>
-                </Link>
-                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p>تجهیزات گرمایشی</p>
-                </Link>
-                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p>شیرآلات</p>
-                </Link>
-                <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p>ابزارآلات</p>
-                </Link>
-                 <Link href="#" className="block p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <p>تجهیزات برقی</p>
-                </Link>
-            </div>
+            {categories.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {categories.map((category: Category) => (
+                      <Link 
+                        href={`/products?category=${category.slug}`} 
+                        key={category.id} 
+                        className="block p-6 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+                      >
+                          <HardHat className="h-8 w-8 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform"/>
+                          <p className="font-semibold">{category.name}</p>
+                      </Link>
+                  ))}
+              </div>
+            ) : (
+              <p className="text-center">دسته‌بندی برای نمایش وجود ندارد.</p>
+            )}
         </div>
       </section>
     </>

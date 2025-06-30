@@ -9,11 +9,11 @@ export default function Header() {
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold sm:inline-block font-headline text-primary">
-              BuildMart Online
+            <span className="font-bold sm:inline-block font-headline text-primary text-lg">
+              پایپ
             </span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <Link
               href="/products"
               className="transition-colors hover:text-foreground/80 text-foreground/60"
