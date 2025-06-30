@@ -1,8 +1,8 @@
 import { getProducts, getCategories } from '@/lib/api';
-import ProductCard from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { Category, Product } from '@/lib/types';
+import ProductList from '@/components/ProductList';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,14 +33,11 @@ export default async function ProductsPage({ searchParams }: { searchParams?: { 
       </div>
       
       {products.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <ProductList products={products} />
       ) : (
         <div className="text-center py-16">
           <p className="text-lg text-muted-foreground">محصولی برای نمایش در این دسته‌بندی وجود ندارد.</p>
+          <p className="text-sm mt-2">ممکن است سرور بک‌اند اجرا نشده باشد یا محصولات هنوز وارد پایگاه داده نشده باشند.</p>
           <Button asChild className="mt-4">
             <Link href="/products">بازگشت به همه محصولات</Link>
           </Button>

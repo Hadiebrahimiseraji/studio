@@ -42,5 +42,7 @@ export interface Category {
     brand: Brand | null;
     images: ProductImage[];
     specifications: ProductSpecification[];
+    created: string;
+    updated: string;
   }
   
