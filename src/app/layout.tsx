@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ApiStatusIndicator from "@/components/ApiStatusIndicator";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -33,6 +34,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <ApiStatusIndicator />
       </body>
     </html>
   );
